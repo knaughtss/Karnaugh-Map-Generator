@@ -83,39 +83,71 @@ public class Kmap {
 
         Scanner scan = new Scanner(System.in);
 
-        //Getting input
-        System.out.println("Sum of Products or Product of Sums?(s/p)");
-        String toggle = scan.nextLine();
-        char form = toggle.charAt(0);
-
-        //to make assigning characters to table entries easier later
-        char stated = '0';
-        char notStated = '1';
-        if(form == 's'){
-            stated = '1';
-            notStated = '0';
-        }
-
-        //more user input
-        if(form == 's'){
-            System.out.println("Σ(comma separated please)");
-        }
-        else if(form == 'p'){
-            System.out.println("Π(comma separated please)");
-        }
-        //get the integers out of the user input
-        String[] stringExpression = scan.nextLine().split(",");
-        int[] expression = generateInts(stringExpression);
-
-        System.out.println("D(n if there are none)");
-
+        String toggle;
+        char form;
+        char stated;
+        char notStated;
+        String[] stringExpression;
+        int[] expression;
         int[] dontCares = {0};
+        String[] dontCareString;
 
-        //get the integers out of the user input, or ignore the user's lack of input
-        String[] dontCareString = scan.nextLine().split(",");
-        if(!dontCareString[0].equals("n")){
-            dontCares = generateInts(dontCareString);
+        if(args.length == 3){
+            toggle = args[0];
+            form = toggle.charAt(0);
+
+            //to make assigning characters to table entries easier later
+            stated = '0';
+            notStated = '1';
+            if(form == 's'){
+                stated = '1';
+                notStated = '0';
+            }
+
+            stringExpression = args[1].split(",");
+            expression = generateInts(stringExpression);
+
+            dontCareString = args[2].split(",");
+            System.out.println(dontCareString[0]);
+            if(!dontCareString[0].equals("n")){
+                dontCares = generateInts(dontCareString);
+            }
         }
+        else{
+            //Getting input
+            System.out.println("Sum of Products or Product of Sums?(s/p)");
+            toggle = scan.nextLine();
+            form = toggle.charAt(0);
+
+            //to make assigning characters to table entries easier later
+            stated = '0';
+            notStated = '1';
+            if(form == 's'){
+                stated = '1';
+                notStated = '0';
+            }
+
+            //more user input
+            if(form == 's'){
+                System.out.println("Σ(comma separated please)");
+            }
+            else if(form == 'p'){
+                System.out.println("Π(comma separated please)");
+            }
+            //get the integers out of the user input
+            stringExpression = scan.nextLine().split(",");
+            expression = generateInts(stringExpression);
+
+            System.out.println("D(n if there are none)");
+
+            //get the integers out of the user input, or ignore the user's lack of input
+            dontCareString = scan.nextLine().split(",");
+            if(!dontCareString[0].equals("n")){
+                dontCares = generateInts(dontCareString);
+            }
+        }
+
+
 
 
         //Find the largest number in the expressions
