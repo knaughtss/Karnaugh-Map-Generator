@@ -2,6 +2,9 @@
 function updateExpression(type, id){
     var label = "F=" + type + "(";
     document.getElementById(id).innerHTML = label;
+    if(document.getElementById("map").innerHTML != ""){
+        generateMap();
+    }
 }
 
 //generates gray code corresponding to the given number
