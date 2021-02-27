@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Karnaugh Map</title>
+    <script src="Kmap.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Karnaugh Map Generator</h1>
+<form id="kmapForm">
+    <p id="Type">
+        <b>Type?</b><br>
+        <label for="P">Product of Sums</label>
+        <input type="radio" id="P" name="type" value="P" onclick="updateExpression('Π', 'expressionLabel')"><br>
+        <label for="S">Sum of Products</label>
+        <input type="radio" id="S" name="type" value="S" onclick="updateExpression('Σ', 'expressionLabel')"><br>
+    </p>
+    <p id="Expression">
+        <b>Expression?</b><br>
+        <label for="expression" id="expressionLabel">F=?(</label>
+        <input type="text" id="expression" name="expression">
+        <label for="dontCares">)+D(</label>
+        <input type="text" id="dontCares" name="dontCares">
+        )
+        <br>
+
+    </p>
+    <input type="button" id="generate" onclick="generateMap()" value="Generate Karnaugh Map" name="generate">
+
+</form>
+
+<br>
+
+<table id="map"></table>
+
+</body>
+</html>
